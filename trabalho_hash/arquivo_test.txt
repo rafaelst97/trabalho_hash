@@ -1,0 +1,4 @@
+Teste para a leitura do arquivo
+Testando
+Teste
+Bla bla bla
