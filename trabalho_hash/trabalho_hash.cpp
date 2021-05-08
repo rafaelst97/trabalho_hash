@@ -5,35 +5,12 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include <string> //Biblioteca para trabalhar com strings
-#include <fstream> //Biblioteca para operações com arquivos
-#include <locale.h> // Biblioteca para acentuação
+#include <fstream> //Biblioteca para operacoes com arquivos
+#include "leitura_arquivo.h"
 
 using namespace std;
 
 int main()
 {
-    setlocale(LC_ALL, "pt_BR.UTF-8"); //Localização para identificar acentos da língua portuguesa
-
-    ifstream arquivo_teste;
-    string linha;
-    string palavra = "acabate";
-    int soma = 0;
-
-    for (int i = 0; i < palavra.length(); i++) { // Função para somar valores ASCII das palavras
-        soma = soma + ("%d", palavra[i]);
-    }
-
-    cout << soma << endl;
-
-    arquivo_teste.open("arquivo_teste.txt"); //Verifica se o arquivo foi aberto
-    if (arquivo_teste.is_open()) {
-        while (getline(arquivo_teste, linha)) { // Função para exibir texto do arquivo na tela
-            cout << linha << endl;
-        }
-    }
-    else {
-        cout << "Não foi possível abrir o arquivo" << endl << "não"; //Mensagem de erro para o caso do arquivo não ter sido aberto
-    }
-
-    arquivo_teste.close();
+	leitura_do_arquivo_menor();
 }
