@@ -8,33 +8,39 @@ using namespace std;
 
 void leitura_do_arquivo_menor() {
 
-	ifstream arquivo_menor;
-	string linha;
-	int ascii = 0;
-	int soma_ascii = 0;
+	ifstream arquivo_menor; //Arquivo com no maximo 25 palavras
+	string linha; //Variavel para auxiliar na navegacao do arquivo
+	string palavra; // Variavel para somar cara caractere que for percorrido do arquivo e criar uma palavra
+	palavra.clear(); // Inicializacao da variavel palavra
+	string texto[1000]; // Vetor para separar cada palavra
+	int navegacao_texto = 0; // Variavel para auxiliar na navegacao do vetor e imprimir o mesmo
 	
-	arquivo_menor.open("arquivo_teste.txt");
+	arquivo_menor.open("arquivo_teste.txt"); //Abrindo o arquivo
 
-	if (arquivo_menor.is_open()) {
+	if (arquivo_menor.is_open()) { // Se o arquivo estiver aberto, realizar esta tarefa
 
-		while (getline(arquivo_menor, linha)) {
+		while (getline(arquivo_menor, linha)) { //lendo todo o arquivo
 
-			
-			/*for (int i = 0; i < linha.length(); i++) {
-				if (("%d", linha[1] != 32)) {
-					soma_ascii = soma_ascii + ("%d", linha[i]);
+			for (int i = 0; i < linha.length(); i++) { // Percorre as strings lidas
+				if (linha[i] != ' ' && linha[i] != '.') { // Verifica se nao ha espaco ou ponto
+					palavra = palavra + linha[i]; // Caso nao haja espaco ou ponto, vai somando as letras em uma palavra
 				}
 				else {
-					cout << soma_ascii << endl;
-					soma_ascii = 0;
+					texto[navegacao_texto] = palavra; //Se a palavra termnou, ela eh colocada no vetor do texto
+					palavra.clear(); // A palavra eh zerada
+					navegacao_texto++; // Parte para a proxima posicao do vetor de texto
 				}
-			}*/
+			}
 
 		}
 
-		arquivo_menor.close();
+		arquivo_menor.close(); // Fecha o arquivo
 	}
 	else {
-		cout << "Nao foi possivel abrir o arquivo" << endl;
+		cout << "Nao foi possivel abrir o arquivo" << endl; // Mensagem de erro para o caso do arquivo nao poder ser aberto
+	}
+
+	for (int i = 0; i < navegacao_texto; i++) { // Impressao do vetor de texto
+		cout << texto[i] << endl;
 	}
 }
