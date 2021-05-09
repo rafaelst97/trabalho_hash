@@ -12,5 +12,9 @@ using namespace std;
 
 int main()
 {
-	leitura_do_arquivo_menor();
+	const int TAMANHO = 1000;
+	elementos texto[TAMANHO]; // Tabela
+
+	leitura_do_arquivo_menor(texto);
+	impressao_hash(texto);
 }

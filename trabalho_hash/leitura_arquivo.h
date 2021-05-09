@@ -6,27 +6,41 @@
 
 using namespace std;
 
-void primeira_hash(int& palavra_ascii, string &palavra) { //Primeiro metodo hash, recebe como parametro a palavra lida do texto menor
+struct elementos {
+	int chave = 0;
+	string palavra;
+};
 
-	string texto[25]; // Tabela
-	for (int i = 0; i < 25; i++) {
-		texto[i] = "";
+void impressao_hash(elementos texto[]) {
+
+	for (int i = 0; i < 1000; i++) {
+		cout << "Posicao: " << i << " Chave: " << texto[i].chave << " Palavra: " << texto[i].palavra << endl;
 	}
+}
+
+void primeira_hash(int& palavra_ascii, string &palavra, elementos texto[]) { //Primeiro metodo hash, recebe como parametro a palavra lida do texto menor
 	int navegacao_texto = 0; // Variavel para auxiliar na navegacao do vetor e imprimir o mesmo
-
-	navegacao_texto = palavra_ascii % 100;
+	int aux = 0;
+	navegacao_texto = palavra_ascii % 100;  // Metodo hash
 	
-	while (texto[navegacao_texto] != "")
-		texto[navegacao_texto] = palavra; //Se a palavra termnou, ela eh colocada no vetor do texto
-		palavra_ascii = 0; // Zerando o valor da palavra
+	if (navegacao_texto == texto[navegacao_texto].chave) { // Inicio do tratamento de colisao
+		aux = navegacao_texto;
+		do {
+			aux++;
+		} while (navegacao_texto == texto[aux].chave);
 
-	for (int i = 0; i < navegacao_texto; i++) { // Impressao do vetor de texto
-		cout << texto[i] << endl;
+		texto[aux].chave = navegacao_texto;
+		texto[aux].palavra = palavra;
+		aux = 0;
 	}
+	else {
+		texto[navegacao_texto].chave = navegacao_texto;
+		texto[navegacao_texto].palavra = palavra;
+	} // Fim do tratamento de colisao
 
 }
 
-void leitura_do_arquivo_menor() { // Funcao para ler arquivo menor
+void leitura_do_arquivo_menor(elementos texto[]) { // Funcao para ler arquivo menor
 
 	ifstream arquivo_menor; //Arquivo com no maximo 25 palavras
 	string linha; //Variavel para auxiliar na navegacao do arquivo
@@ -45,10 +59,13 @@ void leitura_do_arquivo_menor() { // Funcao para ler arquivo menor
 				if (linha[i] != ' ' && linha[i] != '.') { // Verifica se nao ha espaco ou ponto
 					palavra = palavra + linha[i];
 					palavra_ascii = palavra_ascii + ("%d", linha[i]); // Caso nao haja espaco ou ponto, vai somando os codigos ASCII em uma palavra
+					primeira_hash(palavra_ascii, palavra, texto);
+					
 				}
 				else {
 					
-					primeira_hash(palavra_ascii, palavra);
+					palavra_ascii = 0;
+					palavra.clear();
 
 				}
 			}
