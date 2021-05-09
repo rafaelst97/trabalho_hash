@@ -10,9 +10,8 @@ void leitura_do_arquivo_menor() {
 
 	ifstream arquivo_menor; //Arquivo com no maximo 25 palavras
 	string linha; //Variavel para auxiliar na navegacao do arquivo
-	string palavra; // Variavel para somar cara caractere que for percorrido do arquivo e criar uma palavra
-	palavra.clear(); // Inicializacao da variavel palavra
-	string texto[1000]; // Vetor para separar cada palavra
+	int palavra = 0; // Variavel para somar valores ASCII
+	int texto[1000]; // Vetor para separar cada palavra
 	int navegacao_texto = 0; // Variavel para auxiliar na navegacao do vetor e imprimir o mesmo
 	
 	arquivo_menor.open("arquivo_teste.txt"); //Abrindo o arquivo
@@ -23,11 +22,11 @@ void leitura_do_arquivo_menor() {
 
 			for (int i = 0; i < linha.length(); i++) { // Percorre as strings lidas
 				if (linha[i] != ' ' && linha[i] != '.') { // Verifica se nao ha espaco ou ponto
-					palavra = palavra + linha[i]; // Caso nao haja espaco ou ponto, vai somando as letras em uma palavra
+					palavra = palavra + ("%d", linha[i]); // Caso nao haja espaco ou ponto, vai somando os codigos ASCII em uma palavra
 				}
 				else {
 					texto[navegacao_texto] = palavra; //Se a palavra termnou, ela eh colocada no vetor do texto
-					palavra.clear(); // A palavra eh zerada
+					palavra = 0; // Zerando o valor da palavra
 					navegacao_texto++; // Parte para a proxima posicao do vetor de texto
 				}
 			}
