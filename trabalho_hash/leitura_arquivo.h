@@ -18,10 +18,10 @@ void impressao_hash(elementos texto[]) {
 	}
 }
 
-void primeira_hash(int& palavra_ascii, string &palavra, elementos texto[]) { //Primeiro metodo hash, recebe como parametro a palavra lida do texto menor
+void primeira_hash(int palavra_ascii, string palavra, elementos texto[]) { //Primeiro metodo hash, recebe como parametro a palavra lida do texto menor
 	int navegacao_texto = 0; // Variavel para auxiliar na navegacao do vetor e imprimir o mesmo
 	int aux = 0;
-	navegacao_texto = palavra_ascii % 100;  // Metodo hash
+	navegacao_texto = palavra_ascii % 100 ;  // Metodo hash
 	
 	if (navegacao_texto == texto[navegacao_texto].chave) { // Inicio do tratamento de colisao
 		aux = navegacao_texto;
@@ -56,14 +56,14 @@ void leitura_do_arquivo_menor(elementos texto[]) { // Funcao para ler arquivo me
 		while (getline(arquivo_menor, linha)) { //lendo todo o arquivo
 
 			for (int i = 0; i < linha.length(); i++) { // Percorre as strings lidas
-				if (linha[i] != ' ' && linha[i] != '.') { // Verifica se nao ha espaco ou ponto
+				if (linha[i] != ' ') { // Verifica se nao ha espaco ou ponto
 					palavra = palavra + linha[i];
 					palavra_ascii = palavra_ascii + ("%d", linha[i]); // Caso nao haja espaco ou ponto, vai somando os codigos ASCII em uma palavra
-					primeira_hash(palavra_ascii, palavra, texto);
 					
 				}
 				else {
 					
+					primeira_hash(palavra_ascii, palavra, texto);
 					palavra_ascii = 0;
 					palavra.clear();
 
