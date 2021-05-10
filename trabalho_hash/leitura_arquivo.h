@@ -11,10 +11,14 @@ struct elementos {
 	string palavra;
 };
 
-void impressao_hash(elementos texto[], const int TAMANHO) {
+void impressao_hash(elementos texto[], const int TAMANHO) { //Funcao de impressao
 
-	int menu = 0;
+	int menu = 0; // Inicializacao de variavel para o menu
+	int quantidade_palavras = 1; // Variavel para contar a quantidade de palavras
+	float taxa_ocupacao = 1.0; //Variavel para a taxa de ocupacao da tabela hash
+	int colisoes = 0; // Variavel para tratar as colisoes
 
+	//Loop do menu
 	while (menu != 7) {
 	cout << "Escolha '1' para exibir a tabela hash completa" << endl
 		<< "Escolha '2' para exibir o tamanho da tabela" << endl
@@ -25,17 +29,56 @@ void impressao_hash(elementos texto[], const int TAMANHO) {
 		<< "Escolha '7' para sair" << endl
 		<< "Digite sua opcao: ";
 	cin >> menu;
+
+		// Opcoes do menu
 		switch (menu) {
 		case 1:
-			for (int i = 0; i < 1000; i++) {
+			for (int i = 0; i < TAMANHO; i++) {
 				cout << "Posicao: " << i << " Chave: " << texto[i].chave << " Palavra: " << texto[i].palavra << endl;
 			}
 			cout << "\n";
 			break;
 
 		case 2:
+			system("cls");
 			cout << "Tamanho da tabela eh: " << TAMANHO << endl;
 			break;
+
+		case 3:
+			for (int i = 0; i < TAMANHO; i++) {
+				if (texto[i].chave != 0) {
+					quantidade_palavras++;
+				}
+				
+			}
+			system("cls");
+			cout << "Quantidade de palavras na tabela eh: " << quantidade_palavras << endl;
+
+			quantidade_palavras = 1;
+
+			break;
+
+		case 4:
+			for (int i = 0; i < TAMANHO; i++) {
+				if (texto[i].chave != 0) {
+					taxa_ocupacao = taxa_ocupacao + 1.0;
+				}
+
+			}
+			taxa_ocupacao = taxa_ocupacao * 100;
+			taxa_ocupacao = taxa_ocupacao / TAMANHO;
+
+			system("cls");
+			cout << "A taxa de ocupacao da tabela eh: " << taxa_ocupacao << "%" << endl;
+
+			taxa_ocupacao = 0;
+
+			break;
+
+		case 5:
+			for (int i = 0; i < TAMANHO; i++) {
+				if 
+			}
 
 		default:
 
