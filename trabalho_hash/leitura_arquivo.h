@@ -104,11 +104,11 @@ void primeira_hash(int palavra_ascii, string palavra, elementos texto[]) { //Pri
 	int aux = 0;
 	navegacao_texto = palavra_ascii % 100 ;  // Metodo hash
 	
-	if (navegacao_texto == texto[navegacao_texto].chave) { // Inicio do tratamento de colisao
+	if (texto[navegacao_texto].chave != 0) { // Inicio do tratamento de colisao. Metodo antigo >>>>> (navegacao_texto == texto[navegacao_texto].chave)
 		aux = navegacao_texto;
 		do {
 			aux++;
-		} while (navegacao_texto == texto[aux].chave);
+		} while (texto[aux].chave != 0); // Metodo antigo >>>> (navegacao_texto == texto[aux].chave)
 
 		texto[aux].chave = navegacao_texto;
 		texto[aux].palavra = palavra;
