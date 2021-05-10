@@ -11,10 +11,39 @@ struct elementos {
 	string palavra;
 };
 
-void impressao_hash(elementos texto[]) {
+void impressao_hash(elementos texto[], const int TAMANHO) {
 
-	for (int i = 0; i < 1000; i++) {
-		cout << "Posicao: " << i << " Chave: " << texto[i].chave << " Palavra: " << texto[i].palavra << endl;
+	int menu = 0;
+
+	while (menu != 7) {
+	cout << "Escolha '1' para exibir a tabela hash completa" << endl
+		<< "Escolha '2' para exibir o tamanho da tabela" << endl
+		<< "Escolha '3' para exibir a quantidade de palavras que ha no texto" << endl
+		<< "Escolha '4' para exibir a ocupacao da tabela" << endl
+		<< "Escolha '5' para exibir a quantidade de colisoes" << endl
+		<< "Escolha '6' para exibir o metodo hash utilizado" << endl
+		<< "Escolha '7' para sair" << endl
+		<< "Digite sua opcao: ";
+	cin >> menu;
+		switch (menu) {
+		case 1:
+			for (int i = 0; i < 1000; i++) {
+				cout << "Posicao: " << i << " Chave: " << texto[i].chave << " Palavra: " << texto[i].palavra << endl;
+			}
+			cout << "\n";
+			break;
+
+		case 2:
+			cout << "Tamanho da tabela eh: " << TAMANHO << endl;
+			break;
+
+		default:
+
+			system("cls");
+			cout << "Opcao invalida" << endl;
+
+			break;
+		}
 	}
 }
 
@@ -63,9 +92,9 @@ void leitura_do_arquivo_menor(elementos texto[]) { // Funcao para ler arquivo me
 				}
 				else {
 					
-					primeira_hash(palavra_ascii, palavra, texto);
-					palavra_ascii = 0;
-					palavra.clear();
+					primeira_hash(palavra_ascii, palavra, texto); //Funcao para colocar na tabela hash
+					palavra_ascii = 0; //Zera o somatorio de ASCII
+					palavra.clear(); //Zera a palavra
 
 				}
 			}

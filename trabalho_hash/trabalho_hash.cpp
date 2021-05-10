@@ -16,5 +16,5 @@ int main()
 	elementos texto[TAMANHO]; // Tabela
 
 	leitura_do_arquivo_menor(texto);
-	impressao_hash(texto);
+	impressao_hash(texto, TAMANHO);
 }
