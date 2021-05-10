@@ -15,6 +15,6 @@ int main()
 	const int TAMANHO = 1000;
 	elementos texto[TAMANHO]; // Tabela
 
-	leitura_do_arquivo_menor(texto);
+	leitura_do_arquivo(texto);
 	impressao_hash(texto, TAMANHO);
 }

@@ -121,43 +121,76 @@ void primeira_hash(int palavra_ascii, string palavra, elementos texto[]) { //Pri
 
 }
 
-void leitura_do_arquivo_menor(elementos texto[]) { // Funcao para ler arquivo menor
+void leitura_do_arquivo(elementos texto[]) { // Funcao para ler arquivo menor
 
-	ifstream arquivo_menor; //Arquivo com no maximo 25 palavras
+	ifstream arquivo; //Arquivo com no maximo 25 palavras
 	string linha; //Variavel para auxiliar na navegacao do arquivo
 	string palavra; //Variavel para salvar palavras individualmente
 	palavra.clear();
 	int palavra_ascii = 0; // Variavel para somar valores ASCII
+	int escolha_arquivo = 0; //Variavel para selecionar o arquivo que sera aberto
 
+
+	//Menu inicial
+	cout << "Escolha o tamanho do arquivo que sera aberto." << endl
+		<< "1 - Para o arquivo pequeno (ate 25 palavras)" << endl
+		<< "2 - Para o arquivo medio (ate 250 palavras)" << endl
+		<< "3 - Para o arquivo grande (ate 1000 palavras)" << endl
+		<< "4 - Para fechar o programa" << endl
+		<< "Digite sua opcao: ";
+
+	cin >> escolha_arquivo;
 	
-	arquivo_menor.open("arquivo_teste.txt"); //Abrindo o arquivo
+	while (escolha_arquivo != 4) {
+		switch (escolha_arquivo) {
 
-	if (arquivo_menor.is_open()) { // Se o arquivo estiver aberto, realizar esta tarefa
+		case 1 : 
+			arquivo.open("texto_menor.txt"); //Abrindo o arquivo menor
+			break;
 
-		while (getline(arquivo_menor, linha)) { //lendo todo o arquivo
+		case 2 :
+			arquivo.open("texto_medio.txt"); //Abrindo o arquivo maior
+			break;
 
-			for (int i = 0; i < linha.length(); i++) { // Percorre as strings lidas
-				if (linha[i] != ' ') { // Verifica se nao ha espaco ou ponto
-					palavra = palavra + linha[i];
-					palavra_ascii = palavra_ascii + ("%d", linha[i]); // Caso nao haja espaco ou ponto, vai somando os codigos ASCII em uma palavra
-					
+		case 3 :
+			arquivo.open("texto_maior.txt"); //Abrindo o arquivo maior
+			break;
+		case 4 :
+			break;
+
+		default :
+			system("cls");
+			cout << "Opcao invalida!" << endl;
+
+			break;
+
+			if (arquivo.is_open()) { // Se o arquivo estiver aberto, realizar esta tarefa
+
+				while (getline(arquivo, linha)) { //lendo todo o arquivo
+
+					for (int i = 0; i < linha.length(); i++) { // Percorre as strings lidas
+						if (linha[i] != ' ' && linha[i] != ',' && linha[i] != '.' && linha[i] != '-') { // Verifica se nao ha espaco ou ponto
+							palavra = palavra + linha[i];
+							palavra_ascii = palavra_ascii + ("%d", linha[i]); // Caso nao haja espaco ou ponto, vai somando os codigos ASCII em uma palavra
+
+						}
+						else {
+
+							primeira_hash(palavra_ascii, palavra, texto); //Funcao para colocar na tabela hash
+							palavra_ascii = 0; //Zera o somatorio de ASCII
+							palavra.clear(); //Zera a palavra
+
+						}
+					}
+
 				}
-				else {
-					
-					primeira_hash(palavra_ascii, palavra, texto); //Funcao para colocar na tabela hash
-					palavra_ascii = 0; //Zera o somatorio de ASCII
-					palavra.clear(); //Zera a palavra
 
-				}
+				arquivo.close(); // Fecha o arquivo
+			}
+			else {
+				cout << "Nao foi possivel abrir o arquivo" << endl; // Mensagem de erro para o caso do arquivo nao poder ser aberto
 			}
 
 		}
-
-		arquivo_menor.close(); // Fecha o arquivo
 	}
-	else {
-		cout << "Nao foi possivel abrir o arquivo" << endl; // Mensagem de erro para o caso do arquivo nao poder ser aberto
-	}
-
-	
 }
