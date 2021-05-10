@@ -77,8 +77,17 @@ void impressao_hash(elementos texto[], const int TAMANHO) { //Funcao de impressa
 
 		case 5:
 			for (int i = 0; i < TAMANHO; i++) {
-				if 
+				if (texto[i].chave != 0 && texto[i].chave == texto[i + 1].chave) {
+					colisoes = colisoes + 1;
+				}
 			}
+
+			system("cls");
+			cout << "A quantidade de colisoes eh: " << colisoes << endl;
+
+			colisoes = 0;
+
+			break;
 
 		default:
 
