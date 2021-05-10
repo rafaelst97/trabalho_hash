@@ -131,7 +131,7 @@ void leitura_do_arquivo(elementos texto[]) { // Funcao para ler arquivo menor
 	int escolha_arquivo = 0; //Variavel para selecionar o arquivo que sera aberto
 
 
-	//Menu inicial
+	//Menu inicial do programa
 
 	while (escolha_arquivo != 4) {
 		cout << "Escolha o tamanho do arquivo que sera aberto." << endl
