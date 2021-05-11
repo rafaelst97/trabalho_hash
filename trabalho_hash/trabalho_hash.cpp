@@ -6,14 +6,14 @@
 #include <stdlib.h>
 #include <string> //Biblioteca para trabalhar com strings
 #include <fstream> //Biblioteca para operacoes com arquivos
-#include "leitura_arquivo.h"
+#include "leitura_arquivo.h" //Biblioteca da leitura do arquivo e hash
 
 using namespace std;
 
 int main()
 {
-	const int TAMANHO = 1000;
+	const int TAMANHO = 1000; //Tamanho da tabela
 	elementos texto[TAMANHO]; // Tabela
 
-	menu_inicial(texto, TAMANHO);
+	menu_inicial(texto, TAMANHO); //Inicializazao do menu
 }

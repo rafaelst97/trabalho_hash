@@ -183,16 +183,16 @@ void segunda_hash(int palavra_ascii, string palavra, elementos texto[]) { // Seg
 	} // Fim do tratamento de colisao
 }
 
-void terceira_hash(int palavra_ascii, string palavra, elementos texto[]) {
+void terceira_hash(int palavra_ascii, string palavra, elementos texto[]) { // Terceira funcao de hash
 	int navegacao_texto = 0; // Variavel para auxiliar na navegacao do vetor e imprimir o mesmo
 	int aux = 0;
-	navegacao_texto = palavra_ascii % 50;  // Metodo hash
+	navegacao_texto = palavra_ascii % 50;  // Metodo
 
-	if (texto[navegacao_texto].chave != 0) { // Inicio do tratamento de colisao. Metodo antigo >>>>> (navegacao_texto == texto[navegacao_texto].chave)
+	if (texto[navegacao_texto].chave != 0) { // Inicio do tratamento de colisao
 		aux = navegacao_texto;
 		do {
 			aux++;
-		} while (texto[aux].chave != 0); // Metodo antigo >>>> (navegacao_texto == texto[aux].chave)
+		} while (texto[aux].chave != 0);
 
 		texto[aux].chave = navegacao_texto;
 		texto[aux].palavra = palavra;
@@ -204,14 +204,13 @@ void terceira_hash(int palavra_ascii, string palavra, elementos texto[]) {
 	} // Fim do tratamento de colisao
 }
 
-void leitura_do_arquivo(elementos texto[], int tamanho_texto, int metodo_hash) { // Funcao para ler arquivo menor
+void leitura_do_arquivo(elementos texto[], int tamanho_texto, int metodo_hash) { // Funcao para ler arquivos
 
-	ifstream arquivo; //Arquivo com no maximo 25 palavras
+	ifstream arquivo; //Arquivo
 	string linha; //Variavel para auxiliar na navegacao do arquivo
 	string palavra; //Variavel para salvar palavras individualmente
 	palavra.clear();
 	int palavra_ascii = 0; // Variavel para somar valores ASCII
-	int escolha_arquivo = 0; //Variavel para selecionar o arquivo que sera aberto
 
 		switch (tamanho_texto) {
 		case 1:
@@ -272,6 +271,7 @@ void leitura_do_arquivo(elementos texto[], int tamanho_texto, int metodo_hash) {
 	}
 }
 
+//Menu para selecionar o metodo de hash e ir para o menu de impressao de caracteristicas da tabela criada
 int metodo_hash(elementos texto[], int escolha_menu, const int TAMANHO) {
 	system("cls");
 
@@ -319,9 +319,9 @@ int metodo_hash(elementos texto[], int escolha_menu, const int TAMANHO) {
 	}
 }
 
-void menu_inicial(elementos texto[], const int TAMANHO) {
 
-	//Menu inicial do programa
+//Tela inicial do programa
+void menu_inicial(elementos texto[], const int TAMANHO) {
 
 	int escolha_menu = 0;
 
